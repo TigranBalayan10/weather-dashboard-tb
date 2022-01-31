@@ -9,10 +9,130 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
 </head>
 
 <body>
+    <header class="navbar text-center justify-content-center">
+        <h2>Weather Dashboard</h2>
+    </header>
+    <div class="p-3 mb-2 row align-items-start">
+        <div class="col-3">
+            <div>
+                <h2>Search for a City</h2>
+            </div>
+            <input type="text" id="city-input">
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="search-btn">Search</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+            <div class="col-auto d-flex flex-column btn-layout">
+                <button class="btn btn-sm m-1" type="button" id="city-btn">City</button>
+            </div>
+        </div>
+        <div id="current-weather">
+            <div class="current-weather-container">
+                <h2 id="city-name">Yerevan (1/30/2022) __</h2>
+                <ul id="conditions">
+                    <li>Temp: 65F</li>
+                    <li>Wind: 7.99MPH</li>
+                    <li>Humidity: 66%</li>
+                    <li>UV Index: <span class="uv-btn">0.57</span></li>
+                </ul>
+            </div>
+            <div class="day-forecast container">
+                <h2>5-Day Forecast</h2>
+                <div class="row align-items-center" id="day-forecast">
+                    <div class="col-sm">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title" id="date">2/01/2022</h3>
+                                <ul class="card-text" id="up-conditions">
+                                    <li>Temp: 65F</li>
+                                    <li>Wind: 7.99MPH</li>
+                                    <li>Humidity: 66%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center" id="day-forecast">
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title" id="date">2/01/2022</h3>
+                                    <ul class="card-text" id="up-conditions">
+                                        <li>Temp: 65F</li>
+                                        <li>Wind: 7.99MPH</li>
+                                        <li>Humidity: 66%</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center" id="day-forecast">
+                            <div class="col-sm">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title" id="date">2/01/2022</h3>
+                                        <ul class="card-text" id="up-conditions">
+                                            <li>Temp: 65F</li>
+                                            <li>Wind: 7.99MPH</li>
+                                            <li>Humidity: 66%</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center" id="day-forecast">
+                                <div class="col-sm">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="card-title" id="date">2/01/2022</h3>
+                                            <ul class="card-text" id="up-conditions">
+                                                <li>Temp: 65F</li>
+                                                <li>Wind: 7.99MPH</li>
+                                                <li>Humidity: 66%</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center" id="day-forecast">
+                                    <div class="col-sm">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h3 class="card-title" id="date">2/01/2022</h3>
+                                                <ul class="card-text" id="up-conditions">
+                                                    <li>Temp: 65F</li>
+                                                    <li>Wind: 7.99MPH</li>
+                                                    <li>Humidity: 66%</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 </body>
 
