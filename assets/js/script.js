@@ -1,10 +1,13 @@
-var apiKey = "fb6399a2819ef492d50006a15ec7816f";
+var apiKey = "ff8650a55971d04838c69e88908614ab";
 var cityInputEl = document.getElementById("city-input");
 var searchFormEl = document.getElementById("search-form");
 var searchButtonEl = document.getElementById("search-btn");
 var conditionsEl = document.getElementById("conditions");
 var cityNameEl = document.getElementById("city-name")
-var today = new Date().toISOString().slice(0, 10);
+var currentEl = document.getElementById("current-container");
+var today = new Date().toLocaleDateString();
+var forecastDateEl = document.getElementById("date")
+var forecastInfo = document.getElementById("up-conditions")
 
 var cityNameArr = [];
 // get city name
@@ -18,6 +21,8 @@ var cityNameHandler = function (event) {
         getCityName(cityName);
         cityInputEl.value = "";
         cityNameEl.textContent = `${cityName} (${today})`
+
+
     } else {
         alert("Please enter city name")
     }
@@ -32,7 +37,7 @@ var getCityName = function (city) {
         if (response.ok) {
             response.json().then(function (data) {
                 getConditions(data[0].lon, data[0].lat);
-                getForecast(data[0].lon, data[0].lat);
+
             })
 
         } else {
@@ -47,11 +52,11 @@ var getCityName = function (city) {
 
 var getConditions = function (lat, lon) {
 
-    var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&.04&units=imperial&appid=${apiKey}`
+    var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts,current&units=imperial&appid=${apiKey}`
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (dataCon) {
-                displayConditions(dataCon.current.temp, dataCon.current.wind_speed, dataCon.current.humidity, dataCon.current.weather[0].icon, dataCon.current.uvi);
+                displayConditions(dataCon);
             })
 
         } else {
@@ -64,7 +69,13 @@ var getConditions = function (lat, lon) {
 
 }
 
-var displayConditions = function (temp, wind, humidity, icon, uvi) {
+
+var displayConditions = function (dataCon) {
+    var icon = dataCon.daily[0].weather[0].icon;
+    var temp = dataCon.daily[0].temp.day;
+    var wind = dataCon.daily[0].wind_speed;
+    var humidity = dataCon.daily[0].humidity;
+    var uvi = dataCon.daily[0].uvi;
 
     var iconEl = document.createElement("img")
     iconEl.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -76,34 +87,38 @@ var displayConditions = function (temp, wind, humidity, icon, uvi) {
     humidityLi.textContent = `Humidity: ${humidity}%`
     var uvIndexEl = document.createElement("li")
     uvIndexEl.innerHTML = `UV Index: <span class="uv-btn">${uvi}</span>`;
-
-
-
     conditionsEl.appendChild(tempLi);
     conditionsEl.appendChild(windLi);
     conditionsEl.appendChild(humidityLi);
     cityNameEl.appendChild(iconEl)
     conditionsEl.appendChild(uvIndexEl);
-}
 
-var getForecast = function (lat, lon) {
+    for (i = 1; i < 6; i++) {
 
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
-    fetch(apiUrl).then(function (response) {
-        if (response.ok) {
-            console.log(response);
-            response.json().then(function (dataFor) {
-                console.log(dataFor);
-            })
+        var forecastDate = new Date(dataCon.daily[i].dt * 1000).toLocaleDateString();
+        console.log(forecastDate);
+        var forecastIcon = dataCon.daily[i].weather[0].icon;
+        console.log(forecastIcon);
+        var forecastTemp = dataCon.daily[i].temp.day;
+        console.log(forecastTemp);
+        var forecastWind = dataCon.daily[i].wind_speed;
+        var forecastHumidity = dataCon.daily[i].humidity;
 
-        } else {
-            alert("Error: " + response.statusText)
-        }
-    })
-        .catch(function (error) {
-            alert("unable to connect to Open Weather");
-        });
+        var forecastIconEl = document.createElement("img")
+        forecastIconEl.src = `http://openweathermap.org/img/wn/${forecastIcon}@2x.png`;
+        forecastDateEl.textContent = forecastDate;
+        var forecastTempLi = document.createElement('li')
+        forecastTempLi.textContent = `Temp: ${forecastTemp}F`
+        var forecastWindLi = document.createElement('li')
+        forecastWindLi.textContent = `Wind: ${forecastWind}mph`
+        var forecastHumidityLi = document.createElement('li')
+        forecastHumidityLi.textContent = `Humidity: ${forecastHumidity}%`
 
+        forecastDateEl.appendChild(forecastIconEl);
+        // forecastTempLi.appendChild(forecastInfo);
+
+
+    }
 }
 
 
