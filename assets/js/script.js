@@ -12,6 +12,67 @@ var forecastCardEl = document.getElementById("forecast-card");
 var weatherContainerEl = document.getElementById("current-weather");
 var forecastContainer = document.getElementById("day-forecast");
 var historyContainerEl = document.getElementById("history-container");
+// make an array for storing city names
+var cityNameArr = [];
+// show stored city names 
+var showSearchHistory = function () {
+// get city names as an array or as JSON parsed
+  cityNameArr = JSON.parse(localStorage.getItem("cities")) || [];
+  displaySearchHistory();
+};
+// display city names in corresponding elements 
+var displaySearchHistory = function () {
+    // clear history container 
+  historyContainerEl.innerHTML = "";
+// create and append from local storage by looping
+  for (i = 0; i < cityNameArr.length; i++) {
+    var cityButtonEl = document.createElement("button");
+    cityButtonEl.classList.add("btn", "btn-sm", "m-1", "city-btn");
+    cityButtonEl.id = "city-btn" + i;
+    cityButtonEl.textContent = cityNameArr[i];
+    var buttonDivEl = document.createElement("div");
+    buttonDivEl.classList.add(
+      "col-auto",
+      "d-flex",
+      "flex-column",
+      "btn-layout"
+    );
+    historyContainerEl.appendChild(buttonDivEl);
+    buttonDivEl.appendChild(cityButtonEl);
+  }
+};
+// get data for stored city by clicking on the name 
+historyContainerEl.addEventListener("click", (event) => {
+    //Get city name
+  var storedCityName = event.target.textContent;
+  if (storedCityName) {
+    if (weatherContainerEl.classList.contains("hidden")) {
+      weatherContainerEl.classList.remove("hidden");
+    } else {
+      cityNameEl.textContent = "";
+      conditionsEl.textContent = "";
+      forecastContainer.textContent = "";
+    }
+    //pass stored city name to get city name function
+    getCityName(storedCityName);
+    cityInputEl.value = "";
+    cityNameEl.textContent = `${storedCityName} (${today})`;
+  } else {
+    return;
+  }
+});
+// save input city names in local storage
+var saveSearchHistory = function (cityName) {
+    // add city names to array
+  cityNameArr.push(cityName);
+  // reverse the order to show last input first
+  cityNameArr.reverse();
+  // make it 7 saved cities only
+  cityNameArr.splice(7);
+  // store in local storage
+  localStorage.setItem("cities", JSON.stringify(cityNameArr));
+  displaySearchHistory();
+};
 
 var cityNameHandler = function (event) {
   event.preventDefault();
@@ -24,7 +85,7 @@ var cityNameHandler = function (event) {
     }
     //pass city name to get city name function
     getCityName(cityName);
-    // saveSearchHistory(cityName);
+    saveSearchHistory(cityName);
     // clear input field
     cityInputEl.value = "";
     cityNameEl.textContent = `${cityName} (${today})`;
@@ -144,5 +205,5 @@ var displayConditions = function (dataCon) {
   }
 };
 
-// showSearchHistory();
+showSearchHistory();
 searchButtonEl.addEventListener("click", cityNameHandler);
