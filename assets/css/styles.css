@@ -218,3 +218,10 @@ body {
         display: none;
 }
 
+.error-msg {
+        font-size: 10px;
+        color: red;
+        margin-top: 3px;
+        margin-left: 7px;
+}
+
