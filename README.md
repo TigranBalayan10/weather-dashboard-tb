@@ -1,7 +1,7 @@
 # Weather App
 
 ## Screenshot
-![Mockup Screenshot](./Mockup.jpg)
+![Mockup Screenshot](./mockup.jpg)
 
 ## Purpose
 Get current detailed weather by city.
