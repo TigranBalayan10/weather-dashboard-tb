@@ -26,6 +26,9 @@ body {
         color : rgb(255, 255, 255);
 }
 
+#search-form {
+        padding-left: 34px;
+}
 #city-input {
 
         background : #FFFFFF;
@@ -77,19 +80,19 @@ body {
         -webkit-border-radius : 18px;
       }
       
-#city-btn {
+.city-btn {
         background : #666699;
         background : rgba(102, 102, 153, 1);
         border-radius : 18px;
         -moz-border-radius : 18px;
         -webkit-border-radius : 18px;
-        font-size : 25px;
+        font-size : 18px;
         letter-spacing : 0.04px;
         color : #FFFFFF;
         color : rgb(255, 255, 255);  
       }
 
-#city-btn:hover {
+.city-btn:hover {
         background : #6666FF;
         background : rgba(102, 102, 255, 1);
         border-radius : 18px;
@@ -133,12 +136,8 @@ body {
         color : rgb(0, 0, 0);
       }
 
-.col-3 {
-        margin: 20px;
-}
-
-.col-3 h2 {
-        font-size : 30px;
+.col-2 h2 {
+        font-size : 25px;
         letter-spacing : 0.04px;
         color : #000000;
         color : rgb(0, 0, 0);
@@ -209,5 +208,13 @@ body {
 
 .card-title {
         font-size: 20px;
+}
+
+.hidden {
+        display: none;
+}
+
+.city-btn-hidden {
+        display: none;
 }
 
